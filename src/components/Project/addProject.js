@@ -31,7 +31,10 @@ class AddProject extends Component {
       end_date: this.state.end_date
     };
     this.props.createProject(newProject, this.props.history);
+    debugger;
+    console.log(newProject);
   }
+
   render() {
     return (
       <div className="project">
