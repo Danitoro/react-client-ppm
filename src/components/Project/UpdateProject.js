@@ -21,7 +21,9 @@ class UpdateProject extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  //esto es para añadir la información en la pagina desde el reducer
+  //las funciones que se definen a continuación son propias de react y cada una tiene su funcionalidad
+
+  //esta funcion es para añadir la información en la pagina desde el reducer
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
