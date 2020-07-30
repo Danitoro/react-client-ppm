@@ -8,13 +8,53 @@ import { getBacklog } from "../../actions/backlogActions";
 class ProjectBoard extends Component {
   //constructor to handler errors
 
+  constructor() {
+    super();
+    this.state = {
+      errors: {},
+    };
+  }
+
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.getBacklog(id);
   }
+  // estoy hay que cambiarlo porque en la versión de react nueva da problemas
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   render() {
     const { id } = this.props.match.params;
     const { project_tasks } = this.props.backlog;
+    const { errors } = this.state;
+
+    let BoardContent;
+
+    const boardAlgorithm = (project_tasks) => {
+      if (project_tasks.length < 1 || project_tasks.length == null) {
+        if (project_tasks.projectNotFound) {
+          return (
+            <div className="alert alert-danger text-center" role="alert">
+              {project_tasks.projectNotFound}
+            </div>
+          );
+        } else {
+          return (
+            <div className="alert alert-info text-center" role="alert">
+              No project Tasks on this board
+            </div>
+          );
+        }
+      } else {
+        return <Backlog project_tasks_prop={project_tasks} />;
+      }
+    };
+
+    BoardContent = boardAlgorithm(project_tasks);
+
     return (
       <div className="container">
         <Link to={`/addProjectTask/${id}`} className="btn btn-primary mb-3">
@@ -22,7 +62,7 @@ class ProjectBoard extends Component {
         </Link>
         <br />
         <hr />
-        <Backlog project_tasks_prop={project_tasks} />
+        {BoardContent}
       </div>
     );
   }
@@ -31,10 +71,12 @@ class ProjectBoard extends Component {
 ProjectBoard.propTypes = {
   backlog: PropTypes.object.isRequired,
   getBacklog: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   backlog: state.backlog,
+  errors: state.errors,
 });
 // para conectar esto con el store modifico esto export default ProjectBoard; por esto:
 export default connect(mapStateToProps, { getBacklog })(ProjectBoard);
