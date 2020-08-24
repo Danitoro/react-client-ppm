@@ -7,6 +7,7 @@ import classnames from "classnames";
 class AddProject extends Component {
   constructor() {
     super();
+    //Here we declare the props of the state of our component
     this.state = {
       projectName: "",
       projectIdentifier: "",
@@ -16,11 +17,12 @@ class AddProject extends Component {
       errors: {}
     };
 
+    //When onChange or onSubmit is called then its method is triggered
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-
-  //life cycle hooks
+  //If errors is modified then the next method is triggered and the state is setted up with the new data
+  //life cycle hooks but deprecated
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
@@ -40,7 +42,7 @@ class AddProject extends Component {
       start_date: this.state.start_date,
       end_date: this.state.end_date
     };
-    console.log("start_date: "+ this.state.start_date)
+
     this.props.createProject(newProject, this.props.history);
   }
 
@@ -133,6 +135,7 @@ class AddProject extends Component {
     );
   }
 }
+
 AddProject.propTypes = {
   createProject: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired
