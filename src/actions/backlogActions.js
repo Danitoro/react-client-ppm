@@ -4,7 +4,6 @@ import { GET_ERRORS, GET_BACKLOG, GET_PROJECT_TASK, DELETE_PROJECT_TASK } from "
 export const addProjectTask = (backlog_id, project_task, history) => async (
   dispatch
 ) => {
-  debugger;
   console.log("project task: " + project_task)
   try {
     await axios.post(`/api/backlog/${backlog_id}`, project_task);
@@ -57,7 +56,6 @@ export const updateProjectTask = (
   project_task,
   history
 ) => async dispatch => {
-  debugger;
   try {
     await axios.patch(
       `/api/backlog/${backlog_id}/${pt_id}`,
