@@ -22,11 +22,9 @@ class ProjectBoard extends Component {
   // estoy hay que cambiarlo porque en la versión de react nueva da problemas
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
+      debugger;
       this.setState({ errors: nextProps.errors });
     }
-    /*else if(nextProps.backlog.project_tasks.projectIdentifier){
-      this.setState({errors: nextProps.backlog.project_tasks.projectIdentifier})
-    }*/
   }
 
   render() {
@@ -44,6 +42,12 @@ class ProjectBoard extends Component {
               {project_tasks.projectNotFound}
             </div>
           );
+          }else if (project_tasks.projectIdentifier) {
+            return (
+              <div className="alert alert-danger text-center" role="alert">
+                {project_tasks.projectIdentifier}
+              </div>
+            );
         }else{
           return (
             <div className="alert alert-danger text-center" role="alert">
