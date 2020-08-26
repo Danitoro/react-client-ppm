@@ -32,6 +32,11 @@ class Login extends Component {
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
+  componentDidMount(){
+      if(this.props.security.validToken){
+          this.props.history.push("/dashboard")
+      }
+  }
 
   render() {
     return (

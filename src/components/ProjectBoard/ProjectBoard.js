@@ -24,6 +24,9 @@ class ProjectBoard extends Component {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
+    /*else if(nextProps.backlog.project_tasks.projectIdentifier){
+      this.setState({errors: nextProps.backlog.project_tasks.projectIdentifier})
+    }*/
   }
 
   render() {
@@ -35,10 +38,16 @@ class ProjectBoard extends Component {
 
     const boardAlgorithm = (project_tasks) => {
       if (project_tasks.length < 1 || project_tasks.length == null) {
-        if (project_tasks.projectNotFound) {
+        if (errors.projectNotFound) {
           return (
             <div className="alert alert-danger text-center" role="alert">
-              {project_tasks.projectNotFound}
+              {errors.projectNotFound}
+            </div>
+          );
+        }else if (errors.projectIdentifier) {
+          return (
+            <div className="alert alert-danger text-center" role="alert">
+              {errors.projectIdentifier}
             </div>
           );
         } else {
