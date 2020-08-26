@@ -38,25 +38,19 @@ class ProjectBoard extends Component {
 
     const boardAlgorithm = (project_tasks) => {
       if (project_tasks.length < 1 || project_tasks.length == null) {
-        if (errors.projectNotFound) {
+        if (project_tasks.projectNotFound) {
           return (
             <div className="alert alert-danger text-center" role="alert">
-              {errors.projectNotFound}
+              {project_tasks.projectNotFound}
             </div>
           );
-        }else if (errors.projectIdentifier) {
+        }else{
           return (
             <div className="alert alert-danger text-center" role="alert">
-              {errors.projectIdentifier}
-            </div>
-          );
-        } else {
-          return (
-            <div className="alert alert-info text-center" role="alert">
               No project Tasks on this board
             </div>
           );
-        }
+        } 
       } else {
         return <Backlog project_tasks_prop={project_tasks} />;
       }
