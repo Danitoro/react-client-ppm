@@ -10,7 +10,7 @@ class AddProject extends Component {
     //Here we declare the props of the state of our component
     this.state = {
       projectName: "",
-      projectIdentifier: "",
+      //projectIdentifier: "",
       description: "",
       start_date: "",
       end_date: "",
@@ -37,7 +37,7 @@ class AddProject extends Component {
     e.preventDefault();
     const newProject = {
       projectName: this.state.projectName,
-      projectIdentifier: this.state.projectIdentifier,
+      //projectIdentifier: this.state.projectIdentifier,
       description: this.state.description,
       start_date: this.state.start_date,
       end_date: this.state.end_date
@@ -72,6 +72,8 @@ class AddProject extends Component {
                     <div className="invalid-feedback">{errors.projectName}</div>
                   )}
                 </div>
+                {
+                  /*
                 <div className="form-group">
                   <input
                     type="text"
@@ -83,12 +85,16 @@ class AddProject extends Component {
                     value={this.state.projectIdentifier}
                     onChange={this.onChange}
                   />
+
                   {errors.projectName && (
                     <div className="invalid-feedback">
                       {errors.projectIdentifier}
                     </div>
                   )}
-                </div>
+                  </div> 
+                  */
+                 }
+                                 
                 <div className="form-group">
                   <textarea
                     className={classnames("form-control form-control-lg ", {
